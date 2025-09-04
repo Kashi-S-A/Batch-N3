@@ -9,9 +9,7 @@ public class Insert {
 
 	public static void main(String[] args) {
 
-		String url = "jdbc:postgresql://localhost:5432/company";
-		String username = "postgres";
-		String password = "root";
+		String url = "jdbc:postgresql://localhost:5432/company?user=postgres&password=root";
 
 		try {
 
@@ -20,17 +18,17 @@ public class Insert {
 			System.out.println("Driver is loaded");
 
 			// step 2 : Create a connection
-			Connection con = DriverManager.getConnection(url, username, password);
+			Connection con = DriverManager.getConnection(url);
 			System.out.println("connection is created");
 
 			// step 3 : Create a Statement
 			Statement stm = con.createStatement();
 			System.out.println("statement is created");
 
-			String sql = "insert into employee values(102,'Sandeep','sandeep@gmail.com',5000)";
+			String sql = "insert into employee values(104,'Suresh','suresh@gmail.com',95000)";
 
 			// step 4 : Execute the query
-			stm.execute(sql);
+			System.out.println(stm.execute(sql));
 			System.out.println("query executed");
 
 			// step 5 : close the connection
