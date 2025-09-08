@@ -1,4 +1,4 @@
-package com.tyss.crud;
+package com.tyss.closecon;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,26 +6,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Fetch {
+public class CloseFinally {
 
 	public static void main(String[] args) {
 		String driver = "org.postgresql.Driver";
 		String url = "jdbc:postgresql://localhost:5432/company";
 		String username = "postgres";
-		String passwrod = "root";
+		String passwrod = "roo";
 
+		Connection con = null;
 		try {
 			Class.forName(driver);
+			System.out.println("driver loaded");
 
-			Connection con = DriverManager.getConnection(url, username, passwrod);
+			con = DriverManager.getConnection(url, username, passwrod);
+			System.out.println("connection is created");
 
 			Statement stm = con.createStatement();
+			System.out.println("statement is created");
 
-			String sql = "select * from employee";
-			
-//			System.out.println(stm.execute(sql));
-//			
-//			ResultSet rs = stm.getResultSet();
+			String sql = "elect * from employee";
 
 			ResultSet rs = stm.executeQuery(sql);
 
@@ -40,13 +40,19 @@ public class Fetch {
 
 			System.out.println("record is fetched");
 
-			con.close();
-
-			System.out.println("connection is closed");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) {
+					con.close();
+					System.out.println("connection is closed");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

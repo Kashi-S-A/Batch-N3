@@ -1,12 +1,11 @@
-package com.tyss.crud;
+package com.tyss.closecon;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Fetch {
+public class CloseTryWithResouce {
 
 	public static void main(String[] args) {
 		String driver = "org.postgresql.Driver";
@@ -16,16 +15,18 @@ public class Fetch {
 
 		try {
 			Class.forName(driver);
+			System.out.println("driver loaded");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 
-			Connection con = DriverManager.getConnection(url, username, passwrod);
+		try (Connection con = DriverManager.getConnection(url, username, passwrod);) {
+			System.out.println("connection is created");
 
 			Statement stm = con.createStatement();
+			System.out.println("statement is created");
 
 			String sql = "select * from employee";
-			
-//			System.out.println(stm.execute(sql));
-//			
-//			ResultSet rs = stm.getResultSet();
 
 			ResultSet rs = stm.executeQuery(sql);
 
@@ -39,14 +40,9 @@ public class Fetch {
 			}
 
 			System.out.println("record is fetched");
-
-			con.close();
-
-			System.out.println("connection is closed");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 	}
 }

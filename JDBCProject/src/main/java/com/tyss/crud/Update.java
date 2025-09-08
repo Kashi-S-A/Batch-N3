@@ -20,9 +20,9 @@ public class Update {
 
 			Statement stm = con.createStatement();
 
-			String sql = "update employee set salary=85000 where eid=102";
+			String sql = "update employee set email='ramesh@gmail.com' where name='Ramesh'";
 
-			System.out.println(stm.execute(sql));
+			System.out.println(stm.executeUpdate(sql));
 
 			System.out.println("record is updated");
 

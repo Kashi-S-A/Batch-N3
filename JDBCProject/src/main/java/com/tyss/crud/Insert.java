@@ -25,10 +25,10 @@ public class Insert {
 			Statement stm = con.createStatement();
 			System.out.println("statement is created");
 
-			String sql = "insert into employee values(104,'Suresh','suresh@gmail.com',95000)";
+			String sql = "insert into employee values(107,'Suresh','suresh@gmail.com',95000)";
 
 			// step 4 : Execute the query
-			System.out.println(stm.execute(sql));
+			System.out.println(stm.executeUpdate(sql));
 			System.out.println("query executed");
 
 			// step 5 : close the connection
