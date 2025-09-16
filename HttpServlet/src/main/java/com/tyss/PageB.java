@@ -32,8 +32,8 @@ public class PageB extends HttpServlet {
 		req.setAttribute("stud", student);
 
 		RequestDispatcher rd = req.getRequestDispatcher("display.jsp");// to which servlet you want to dispatch req provide
-																	// url of that servlet
-		rd.forward(req, resp);
+														//url of servlet	// url of that servlet
+		rd.forward(req, resp);							//name of html
 
 	}
 }
