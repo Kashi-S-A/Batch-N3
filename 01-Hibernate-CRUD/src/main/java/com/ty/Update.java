@@ -12,7 +12,7 @@ public class Update {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 
-		Employee employee = em.find(Employee.class, 10);
+		Employee employee = em.find(Employee.class, 20);
 
 		if (employee != null) {
 			employee.setSalary(80000);

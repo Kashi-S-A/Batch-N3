@@ -14,10 +14,10 @@ public class Save {
 		EntityTransaction et = em.getTransaction();
 
 		Employee employee = new Employee();
-		employee.setEid(2);
-		employee.setName("Smith");
-		employee.setEmail("smith@gmail.com");
-		employee.setSalary(55000);
+		employee.setEid(1);
+		employee.setName("Tiger");
+		employee.setEmail("tiger@gmail.com");
+		employee.setSalary(95000);
 
 		et.begin();
 		em.persist(employee);
