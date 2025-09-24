@@ -13,8 +13,7 @@ public class FetchAll {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
 		EntityManager em = emf.createEntityManager();
 
-//		Query query = em.createQuery("select e from Employee e");
-//		List<Employee> employees = query.getResultList();
+		Query query = em.createQuery("select e from Employee e");
 
 //		Query query = em.createQuery("select e from Employee e where e.name=?1");//index based parameter
 //		query.setParameter(1, "Tiger");
@@ -22,9 +21,9 @@ public class FetchAll {
 //		Query query = em.createQuery("select e from Employee e where e.name=:empName");//naming based parameter
 //		query.setParameter("empName", "Tiger");
 
-		Query query = em.createQuery("select e from Employee e where e.name=?1 and e.salary=?2");// index based
-		query.setParameter(1, "Tiger");
-		query.setParameter(2, 95000.0);
+//		Query query = em.createQuery("select e from Employee e where e.name=?1 and e.salary=?2");// index based
+//		query.setParameter(1, "Tiger");
+//		query.setParameter(2, 95000.0);
 
 		List<Employee> employees = query.getResultList();
 
