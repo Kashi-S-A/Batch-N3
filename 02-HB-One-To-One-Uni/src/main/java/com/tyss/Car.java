@@ -1,5 +1,6 @@
 package com.tyss;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -12,7 +13,7 @@ public class Car {
 	private String brand;
 	private double price;
 
-	@OneToOne
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
 	private Engine engine;
 
 	public Engine getEngine() {

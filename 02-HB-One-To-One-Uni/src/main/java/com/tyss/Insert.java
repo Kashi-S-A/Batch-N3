@@ -13,19 +13,19 @@ public class Insert {
 		EntityTransaction et = em.getTransaction();
 
 		Car car = new Car();
-		car.setCid(102);
+		car.setCid(103);
 		car.setBrand("TATA");
 		car.setPrice(2500000);
 
 		Engine engine = new Engine();
-		engine.setEid(222);
+		engine.setEid(333);
 		engine.setCc(1000);
 
 		car.setEngine(engine);// FK relation will be established
 
 		et.begin();
 		em.persist(car);
-		em.persist(engine);
+//		em.persist(engine);
 		et.commit();
 
 		System.out.println("saved");

@@ -12,18 +12,15 @@ public class Delete {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 
-		Engine engine = em.find(Engine.class, 222);
+		Car car = em.find(Car.class, 102);
 
-		if (engine != null) {
+		if (car != null) {
 
 			et.begin();
-			// fetch car and setEngine as null
-			// update car
-			// remove engine
-			em.remove(engine);
+			em.remove(car);
 			et.commit();
 
-			System.out.println("engine deleted");
+			System.out.println("car deleted");
 		} else {
 			System.out.println("not found");
 		}
