@@ -1,12 +1,15 @@
 package com.tyss;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Engine {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int eid;
 	private double cc;
 

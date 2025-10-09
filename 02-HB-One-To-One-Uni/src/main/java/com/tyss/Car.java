@@ -2,6 +2,8 @@ package com.tyss;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -9,6 +11,7 @@ import javax.persistence.OneToOne;
 public class Car {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int cid;
 	private String brand;
 	private double price;

@@ -1,34 +1,27 @@
-package com.tyss;
+package com.ty;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class Insert {
+public class Save {
 
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("dev");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 
-		Car car = new Car();
-//		car.setCid(103);
-		car.setBrand("TATA");
-		car.setPrice(2500000);
-
-		Engine engine = new Engine();
-//		engine.setEid(333);
-		engine.setCc(1000);
-
-		car.setEngine(engine);// FK relation will be established
+		Product product = new Product();
+		product.setName("Samsung");
+		product.setDescription("16GB RAM | 256GM ROM, white color");
+		product.setCategory("mobile");
+		product.setPrice(150000);
 
 		et.begin();
-		em.persist(car);
-//		em.persist(engine);
+		em.persist(product);
 		et.commit();
 
 		System.out.println("saved");
-
 	}
 }
