@@ -22,6 +22,19 @@ public class Save {
 		em.persist(product);
 		et.commit();
 
-		System.out.println("saved");
+//		System.out.println("saved");
+
+//		Product product = em.find(Product.class, 1);
+//
+//		if (product != null) {
+//			product.setPrice(250000);
+//
+//			et.begin();
+//			et.commit();
+//
+//			System.out.println("update");
+//		} else {
+//			System.out.println("Not found");
+//		}
 	}
 }
