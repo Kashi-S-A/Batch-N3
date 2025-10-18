@@ -10,8 +10,18 @@ public class Car {
 	@Value("Mercedes")
 	String brand;
 
-	@Autowired
+//	@Autowired	//field or variable injection
 	Engine engine;
+
+//	@Autowired // setter injection.
+	public void setEngine(Engine engine) {
+		this.engine = engine;
+	}
+
+	@Autowired // constructor injection
+	public Car(Engine engine) {
+		this.engine = engine;
+	}
 
 	public void drive() {
 		System.out.println(brand);
