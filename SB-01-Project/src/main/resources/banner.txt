@@ -1,0 +1,17 @@
+                                                                             
+MMMMMMMM               MMMMMMMMVVVVVVVV           VVVVVVVV      CCCCCCCCCCCCC
+M:::::::M             M:::::::MV::::::V           V::::::V   CCC::::::::::::C
+M::::::::M           M::::::::MV::::::V           V::::::V CC:::::::::::::::C
+M:::::::::M         M:::::::::MV::::::V           V::::::VC:::::CCCCCCCC::::C
+M::::::::::M       M::::::::::M V:::::V           V:::::VC:::::C       CCCCCC
+M:::::::::::M     M:::::::::::M  V:::::V         V:::::VC:::::C              
+M:::::::M::::M   M::::M:::::::M   V:::::V       V:::::V C:::::C              
+M::::::M M::::M M::::M M::::::M    V:::::V     V:::::V  C:::::C              
+M::::::M  M::::M::::M  M::::::M     V:::::V   V:::::V   C:::::C              
+M::::::M   M:::::::M   M::::::M      V:::::V V:::::V    C:::::C              
+M::::::M    M:::::M    M::::::M       V:::::V:::::V     C:::::C              
+M::::::M     MMMMM     M::::::M        V:::::::::V       C:::::C       CCCCCC
+M::::::M               M::::::M         V:::::::V         C:::::CCCCCCCC::::C
+M::::::M               M::::::M          V:::::V           CC:::::::::::::::C
+M::::::M               M::::::M           V:::V              CCC::::::::::::C
+MMMMMMMM               MMMMMMMM            VVV                  CCCCCCCCCCCCC
