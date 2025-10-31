@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${username},Welcome to Spring MVC</h1>
+	<h1>${username}, Welcome to Spring MVC , your account is registered with email : ${email}</h1>
 </body>
 </html>

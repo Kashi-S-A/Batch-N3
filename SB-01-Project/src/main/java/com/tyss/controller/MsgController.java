@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class MsgController {
 
 	@RequestMapping(value = "/read", method = RequestMethod.POST)
-	public String readData(HttpServletRequest request) {
+	public String readData(HttpServletRequest request,Model model) {
 		System.out.println("======User Data=========");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
@@ -21,6 +21,10 @@ public class MsgController {
 		System.out.println(name);
 		System.out.println(email);
 		System.out.println(pwd);
+		
+		model.addAttribute("username", name);
+		model.addAttribute("email", email);
+		
 		return "message.jsp";
 	}
 
