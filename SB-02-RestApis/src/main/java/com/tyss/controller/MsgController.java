@@ -5,40 +5,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/msg")
 public class MsgController {
 
-	@GetMapping("/fetch")
+	@GetMapping
 	public String getMsg() {
 		System.out.println("get request");
 		return "Fetched";
 	}
 	
-	@PostMapping("/fetch")
-	public String get() {
-		System.out.println("get request");
-		return "Fetched";
-	}
-
-	@PostMapping("/save")
+	@PostMapping
 	public String demo() {
 		System.out.println("post request");
 		return "Saved";
 	}
 
-	@PutMapping("/update")
+	@PutMapping
 	public String putMethodName() {
 		return "Updated";
 	}
 
-	@DeleteMapping("/delete")
+	@DeleteMapping
 	public String delete() {
 		return "Deleted";
 	}
 
-	@PatchMapping("/upd")
+	@PatchMapping
 	public String update() {
 		return "Updated";
 	}
