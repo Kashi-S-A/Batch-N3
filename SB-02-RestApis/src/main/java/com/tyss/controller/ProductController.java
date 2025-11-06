@@ -28,11 +28,10 @@ public class ProductController {
 	}
 
 	@GetMapping("/fetch")
-	public Product getProduct(@RequestParam(name = "id") int pid, @RequestParam String name) {
+	public Product getProduct(@RequestParam(name = "id") int pid) {
 		System.out.println(pid);
-		System.out.println(name);
 		for (Product product : products) {
-			if (product.getPid() == pid && product.getName().equals(name))
+			if (product.getPid() == pid)
 				return product;
 		}
 		return null;
@@ -45,16 +44,32 @@ public class ProductController {
 		return "Product is saved with pid : " + product.getPid();
 	}
 
-	@DeleteMapping("/delete/{id}/dp/name/{pname}")
-	public String deleteProduct(@PathVariable(name = "id") int pid,@PathVariable String pname) {
-		System.out.println(pname);
+	@DeleteMapping("/delete/{id}")
+	public String deleteProduct(@PathVariable(name = "id") int pid) {
 		System.out.println(pid);
-		return "Product with id : " + pid + " is Deleted";
+		for (Product product : products) {
+			if (product.getPid() == pid) {
+				products.remove(product);
+				return "Product with id : " + pid + " is Deleted";
+			}
+		}
+		return "Product Not found";
 	}
 
 	@PutMapping("/update")
-	public String updateProduct() {
-		return "Product Updated";
+	public String updateProduct(@RequestParam int pid, @RequestBody Product prod) {
+		for (Product product : products) {
+			if (product.getPid() == pid) {
+				products.remove(product);
+				if(prod.getName()!=null) product.setName(prod.getName());
+				if(prod.getDescription()!=null) product.setDescription(prod.getDescription());
+				if(prod.getPrice()>0)product.setPrice(prod.getPrice());
+				if(prod.getUnits()>0)product.setUnits(prod.getUnits());
+				products.add(product);
+				return "Product is updated";
+			}
+		}
+		return "Product Not found";
 	}
 
 	@GetMapping("/head")
@@ -62,5 +77,5 @@ public class ProductController {
 		System.out.println(token);
 		return "token recieved";
 	}
-	
+
 }

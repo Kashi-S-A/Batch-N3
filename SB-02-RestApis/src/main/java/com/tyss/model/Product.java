@@ -1,12 +1,56 @@
 package com.tyss.model;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "products")
 public class Product {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pid;
+
+	@Column(nullable = false)
 	private String name;
+
 	private String description;
-	private double price;
-	private int units;
+
+	private Double price;
+
+	private Integer units;
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	private LocalDateTime createdDate;
+
+	@UpdateTimestamp
+	private LocalDateTime updatedDate;
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(LocalDateTime updatedDate) {
+		this.updatedDate = updatedDate;
+	}
 
 	@Override
 	public String toString() {
@@ -38,19 +82,19 @@ public class Product {
 		this.description = description;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	public int getUnits() {
+	public Integer getUnits() {
 		return units;
 	}
 
-	public void setUnits(int units) {
+	public void setUnits(Integer units) {
 		this.units = units;
 	}
 
