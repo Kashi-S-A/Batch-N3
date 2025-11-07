@@ -61,10 +61,14 @@ public class ProductController {
 		for (Product product : products) {
 			if (product.getPid() == pid) {
 				products.remove(product);
-				if(prod.getName()!=null) product.setName(prod.getName());
-				if(prod.getDescription()!=null) product.setDescription(prod.getDescription());
-				if(prod.getPrice()>0)product.setPrice(prod.getPrice());
-				if(prod.getUnits()>0)product.setUnits(prod.getUnits());
+				if (prod.getName() != null)
+					product.setName(prod.getName());
+				if (prod.getDescription() != null)
+					product.setDescription(prod.getDescription());
+				if (prod.getPrice() > 0)
+					product.setPrice(prod.getPrice());
+				if (prod.getUnits() > 0)
+					product.setUnits(prod.getUnits());
 				products.add(product);
 				return "Product is updated";
 			}
