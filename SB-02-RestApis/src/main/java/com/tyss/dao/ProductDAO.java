@@ -40,6 +40,22 @@ public class ProductDAO {
 	 * fetch product by id update the product new data present in dto and save
 	 * product
 	 */
-	public void updateProduct(Integer pid, ProductDTO dto) {
+	public String updateProduct(Integer pid, ProductDTO dto) {
+		Optional<Product> opt = productRepository.findById(pid);
+		if (opt.isPresent()) {
+			Product product = opt.get();
+			if (dto.getName() != null)
+				product.setName(dto.getName());
+			if (dto.getPrice() != null)
+				product.setPrice(dto.getPrice());
+			if (dto.getDescription() != null)
+				product.setDescription(dto.getDescription());
+			if (dto.getUnits() != null)
+				product.setUnits(dto.getUnits());
+			productRepository.save(product);
+			return "Product is updated Successfully";
+		} else {
+			return "Product Not found";
+		}
 	}
 }

@@ -11,12 +11,16 @@ public interface ProductService {
 
 	Product findById(Integer pid);
 
-	List<Product> findAll();
+	List<Product> findAll(Integer page);
 
 	String deleteById(Integer pid);
 
 	String updateProduct(Integer pid, ProductDTO ProductDto);
 
 	String updatePrice(Integer pid, Double price);
+
+	List<Product> sortProducts(String property,String order);
+	
+	List<Product> filterProducts(ProductDTO productDTO);
 
 }
