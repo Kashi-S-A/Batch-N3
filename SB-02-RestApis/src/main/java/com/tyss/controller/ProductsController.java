@@ -3,6 +3,7 @@ package com.tyss.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,22 +18,24 @@ import com.tyss.dto.ProductDTO;
 import com.tyss.model.Product;
 import com.tyss.service.ProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/pd")
 public class ProductsController {
 
 	@Autowired
 	private ProductService productService;
-
+	
 	// save
 	@PostMapping("/save")
-	public String saveProduct(@RequestBody ProductDTO productDTO) {
+	public ResponseEntity<String> saveProduct(@RequestBody @Valid ProductDTO productDTO) {
 		return productService.save(productDTO);
 	}
 
 	// fetchById
 	@GetMapping("/byId")
-	public Product productById(@RequestParam Integer pid) {
+	public ResponseEntity<?> productById(@RequestParam Integer pid) {
 		return productService.findById(pid);
 	}
 
@@ -40,6 +43,11 @@ public class ProductsController {
 	@GetMapping
 	public List<Product> getAllProduct(@RequestParam Integer page) {
 		return productService.findAll(page);
+	}
+
+	@GetMapping("/search")
+	public ResponseEntity<List<Product>> getByNameContaining(@RequestParam String name) {
+		return productService.getByNameContaining(name);
 	}
 
 	// sorting
@@ -51,13 +59,12 @@ public class ProductsController {
 	// filter
 	@GetMapping("/filter")
 	public List<Product> filterProducts(@RequestBody ProductDTO productDTO) {
-		System.out.println(productService.filterProducts(productDTO));
 		return productService.filterProducts(productDTO);
 	}
 
 	// deleteById
 	@DeleteMapping("/delete/{pid}")
-	public String deleteProduct(@PathVariable Integer pid) {
+	public ResponseEntity<String> deleteProduct(@PathVariable Integer pid) {
 		return productService.deleteById(pid);
 	}
 
@@ -72,4 +79,21 @@ public class ProductsController {
 	public String updateProduct(@PathVariable Integer pid, @RequestBody ProductDTO productDTO) {
 		return productService.updateProduct(pid, productDTO);
 	}
+
+	@GetMapping(value = "/content",produces = {
+												"application/xml",
+												"application/json"
+											   },
+								   consumes = {
+										   		"application/xml",
+										   		"application/json"
+				   							  }
+	)
+	public ProductDTO getMethodName(@RequestBody ProductDTO productDTO) {
+		System.out.println("========Product Recieved=========");
+		System.out.println(productDTO);
+		System.out.println("========Product Sent=========");
+		return productDTO;
+	}
+
 }

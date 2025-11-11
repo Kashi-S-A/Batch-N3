@@ -2,25 +2,29 @@ package com.tyss.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.tyss.dto.ProductDTO;
 import com.tyss.model.Product;
 
 public interface ProductService {
 
-	String save(ProductDTO productDTO);
+	ResponseEntity<String> save(ProductDTO productDTO);
 
-	Product findById(Integer pid);
+	ResponseEntity<?> findById(Integer pid);
 
 	List<Product> findAll(Integer page);
 
-	String deleteById(Integer pid);
+	ResponseEntity<String> deleteById(Integer pid);
 
 	String updateProduct(Integer pid, ProductDTO ProductDto);
 
 	String updatePrice(Integer pid, Double price);
 
-	List<Product> sortProducts(String property,String order);
-	
+	List<Product> sortProducts(String property, String order);
+
 	List<Product> filterProducts(ProductDTO productDTO);
+
+	ResponseEntity<List<Product>> getByNameContaining(String name);
 
 }

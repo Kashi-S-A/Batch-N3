@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -18,11 +20,13 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pid;
+	private Integer pid;
 
 	@Column(nullable = false)
+	@Size(min = 3, max = 25, message = "Product Name should be between 3 to 25 characters")
 	private String name;
 
+	@NotBlank(message = "description should not be blank")
 	private String description;
 
 	private Double price;
@@ -58,11 +62,11 @@ public class Product {
 				+ ", units=" + units + "]";
 	}
 
-	public int getPid() {
+	public Integer getPid() {
 		return pid;
 	}
 
-	public void setPid(int pid) {
+	public void setPid(Integer pid) {
 		this.pid = pid;
 	}
 

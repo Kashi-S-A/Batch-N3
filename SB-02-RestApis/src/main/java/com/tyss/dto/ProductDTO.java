@@ -1,11 +1,25 @@
 package com.tyss.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class ProductDTO {
 
+	@Size(min = 3, max = 25, message = "Product Name should be between 3 to 25 characters")
 	private String name;
+
 	private Double price;
+
+	@NotBlank(message = "description should not be blank")
 	private String description;
+
 	private Integer units;
+
+	@Override
+	public String toString() {
+		return "ProductDTO [name=" + name + ", price=" + price + ", description=" + description + ", units=" + units
+				+ "]";
+	}
 
 	public String getName() {
 		return name;
