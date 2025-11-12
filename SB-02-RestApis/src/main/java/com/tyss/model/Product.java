@@ -12,10 +12,23 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "products")
+@Data
+//@Getter
+//@Setter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
+//@EqualsAndHashCode
 public class Product {
 
 	@Id
@@ -23,7 +36,7 @@ public class Product {
 	private Integer pid;
 
 	@Column(nullable = false)
-	@Size(min = 3, max = 25, message = "Product Name should be between 3 to 25 characters")
+//	@Size(min = 3, max = 15, message = "Product Name should be between 3 to 25 characters")
 	private String name;
 
 	@NotBlank(message = "description should not be blank")
@@ -39,67 +52,5 @@ public class Product {
 
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
-
-	public LocalDateTime getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(LocalDateTime createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public LocalDateTime getUpdatedDate() {
-		return updatedDate;
-	}
-
-	public void setUpdatedDate(LocalDateTime updatedDate) {
-		this.updatedDate = updatedDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Product [pid=" + pid + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", units=" + units + "]";
-	}
-
-	public Integer getPid() {
-		return pid;
-	}
-
-	public void setPid(Integer pid) {
-		this.pid = pid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Integer getUnits() {
-		return units;
-	}
-
-	public void setUnits(Integer units) {
-		this.units = units;
-	}
 
 }

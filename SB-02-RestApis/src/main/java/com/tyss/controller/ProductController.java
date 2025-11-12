@@ -24,6 +24,7 @@ public class ProductController {
 
 	@GetMapping("/")
 	public List<Product> getProducts() {
+		int a = 10/0;
 		return products;
 	}
 

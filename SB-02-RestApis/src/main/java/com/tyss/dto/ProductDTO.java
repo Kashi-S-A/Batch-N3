@@ -2,7 +2,13 @@ package com.tyss.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Getter
+@Setter
+@ToString
 public class ProductDTO {
 
 	@Size(min = 3, max = 25, message = "Product Name should be between 3 to 25 characters")
@@ -14,43 +20,5 @@ public class ProductDTO {
 	private String description;
 
 	private Integer units;
-
-	@Override
-	public String toString() {
-		return "ProductDTO [name=" + name + ", price=" + price + ", description=" + description + ", units=" + units
-				+ "]";
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Integer getUnits() {
-		return units;
-	}
-
-	public void setUnits(Integer units) {
-		this.units = units;
-	}
 
 }

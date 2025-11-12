@@ -3,8 +3,10 @@ package com.tyss.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,6 +96,36 @@ public class ProductsController {
 		System.out.println(productDTO);
 		System.out.println("========Product Sent=========");
 		return productDTO;
+	}
+	
+	@GetMapping("/exc")
+	public String exception() {
+		System.out.println("==========Started============");
+//		String st="Hi";
+//		System.out.println(st.charAt(10));
+//		String s = null;
+//		System.out.println(s.charAt(0));
+		int a = 10/0;
+		System.out.println("==========ended============");
+		return "This is Exception Handling API";
+	}
+	
+	@ExceptionHandler(ArithmeticException.class)
+	public ResponseEntity<String> catchException() {
+		System.out.println("AE Exception handled");
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("exception is handled");
+	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public ResponseEntity<String> catchNullPointerException(NullPointerException e) {
+		System.out.println("Hanlde NPE");
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<String> catchException(Exception e) {
+		System.out.println("handle all exception");
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 	}
 
 }
