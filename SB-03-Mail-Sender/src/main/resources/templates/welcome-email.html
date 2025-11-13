@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Spring Boot Tutorial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .body {
+            padding: 25px;
+            color: #333333;
+            text-align: left;
+        }
+        .body h2 {
+            color: #2c3e50;
+        }
+        .body p {
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #0b69ff;
+            color: #ffffff;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 20px;
+        }
+        .footer {
+            background-color: #ecf0f1;
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Welcome to Spring Boot Tutorial</h1>
+    </div>
+    <div class="body">
+        <h2>Hello, <span style="color:#0b69ff;" th:text="${username}"></span> 👋</h2>
+        <p>
+            We’re excited to have you on board! You’re about to start your journey into the world of
+            <strong>Spring Boot Development</strong>.
+        </p>
+        <p>
+            In this tutorial, you’ll learn how to build production-ready applications, REST APIs, microservices, and more.
+        </p>
+        <a href="https://spring.io/projects/spring-boot" class="button">Start Learning</a>
+    </div>
+    <div class="footer">
+        &copy; 2025 Spring Boot Tutorial | Made with ❤️ for Developers
+    </div>
+</div>
+</body>
+</html>
