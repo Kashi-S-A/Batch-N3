@@ -22,7 +22,7 @@ public class CustomerService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		Customer customer = customerRepo.findByEmail(email)
-				.orElseThrow(() -> new RuntimeException("User not register"));
+				.orElseThrow(() -> new RuntimeException("User not registered"));
 
 		return new User(customer.getEmail(), customer.getPassword(), Collections.emptyList());
 	}
