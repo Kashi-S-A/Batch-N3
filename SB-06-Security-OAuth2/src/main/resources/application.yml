@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: SB-06-Security-OAuth2
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: '{google-client-id}'
+            client-secret: '{google-client-secrete}'
+            scope: profile,email,openid
+          github:
+            client-id: '{git-client-id}'
+            client-secret: '{git-client-secret}'
+            scope: profile,email,openid

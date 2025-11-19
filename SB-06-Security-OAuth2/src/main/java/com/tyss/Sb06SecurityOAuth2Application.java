@@ -4,11 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@Profile("uat")
-public class Sb02RestApisApplication {
+public class Sb06SecurityOAuth2Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Sb02RestApisApplication.class, args);
+		SpringApplication.run(Sb06SecurityOAuth2Application.class, args);
 	}
 
 }

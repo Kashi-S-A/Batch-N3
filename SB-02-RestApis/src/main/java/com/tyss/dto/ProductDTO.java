@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public class ProductDTO {
 
-	@Size(min = 3, max = 25, message = "Product Name should be between 3 to 25 characters")
+//	@Size(min = 3, max = 25, message = "Product Name should be between 3 to 25 characters")
 	private String name;
 
 	private Double price;
