@@ -115,30 +115,30 @@
     <div class="title">Create Account</div>
     <p class="sub-text">Join and manage your finances smartly</p>
 
-    <form method="post">
+    <form method="post" action="register">
         <div class="mb-3">
             <label class="form-label">Full Name</label>
-            <input type="text" class="form-control" placeholder="Enter your full name">
+            <input type="text" name="name" class="form-control" placeholder="Enter your full name">
         </div>
 
         <div class="mb-3">
             <label class="form-label">Email Address</label>
-            <input type="email" class="form-control" placeholder="Enter your email">
+            <input type="email" name="email" class="form-control" placeholder="Enter your email">
         </div>
 
         <div class="mb-3">
             <label class="form-label">Create Password</label>
-            <input type="password" class="form-control" placeholder="Create a password">
+            <input type="password" name="password" class="form-control" placeholder="Create a password">
         </div>
 
         <small class="text-muted d-block mb-3">
             Password must be 8-20 characters, include numbers, and avoid spaces or special symbols.
         </small>
 
-        <button class="btn-register">Register</button>
+        <button type="submit" class="btn-register">Register</button>
     </form>
 
-    <a href="#" class="footer-link">Already registered? Sign In</a>
+    <a href="/login" class="footer-link">Already registered? Sign In</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

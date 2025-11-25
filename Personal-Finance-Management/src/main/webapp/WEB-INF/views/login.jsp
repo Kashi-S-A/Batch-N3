@@ -107,22 +107,22 @@
     
     <div class="brand-title">Finance Manager</div>
     <p class="text-center text-muted mb-4">Secure login to continue</p>
-
-    <form method="post">
+	<p style="color: green">${msg}</p>
+    <form method="post" action="/do-login">
         <div class="mb-3">
             <label class="form-label fw-semibold">Email Address</label>
-            <input type="email" class="form-control" placeholder="example@email.com">
+            <input type="email" name="username" class="form-control" placeholder="example@email.com">
         </div>
 
         <div class="mb-3">
             <label class="form-label fw-semibold">Password</label>
-            <input type="password" class="form-control" placeholder="Enter password">
+            <input type="password" name="password" class="form-control" placeholder="Enter password">
         </div>
 
-        <button class="btn-login mt-3">Sign In</button>
+        <button type="submit" class="btn-login mt-3">Sign In</button>
     </form>
 
-    <a href="#" class="footer-link">New user? Create an account</a>
+    <a href="/register" class="footer-link">New user? Create an account</a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
