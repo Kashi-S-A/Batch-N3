@@ -1,144 +1,71 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Add Budget</title>
+<%@include file="head.jsp" %>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
-<style>
-:root{
-    --primary:#0A7866;
-    --primary-light:#14a48b;
-    --bg-a:#b7e1d8;
-    --bg-b:#d9f1ec;
-}
-
-body{
-    background:linear-gradient(135deg, var(--bg-a), var(--bg-b));
-    font-family: Arial, sans-serif;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-
-.form-container{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    margin-top:30px;
-}
-
-
-.glass-card{
-    width: 420px;
-    background:rgba(255,255,255,0.75);
-    border-radius:20px;
-    padding:36px;
-    backdrop-filter:blur(12px);
-    box-shadow:0 16px 40px rgba(0,0,0,0.12);
-    text-align:center;
-}
-
-.title{
-    font-size:26px;
-    font-weight:800;
-    color:var(--primary);
-}
-
-.sub{
-    margin-bottom:20px;
-    font-size:14px;
-    color:#5a6263;
-}
-
-/* Form style */
-.form-control, .form-select{
-    border-radius:10px;
-    padding:12px;
-    border:1.4px solid #ccd8d6;
-    transition:.2s;
-}
-.form-control:focus, .form-select:focus{
-    border-color: var(--primary);
-    box-shadow:0 0 0 4px rgba(10,120,102,0.15);
-}
-
-.btn-save{
-    width:100%;
-    background:var(--primary);
-    padding:13px;
-    font-weight:700;
-    border-radius:12px;
-    color:white;
-    border:none;
-    transition:.18s;
-}
-
-.btn-save:hover{
-    background:var(--primary-light);
-    transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(10,121,104,.25);
-}
-
-
-.table-wrap{
-    margin-top:40px;
-    width:85%;
-    background:rgba(255,255,255,0.60);
-    padding:20px;
-    border-radius:16px;
-    backdrop-filter:blur(10px);
-    box-shadow:0 12px 30px rgba(0,0,0,0.10);
-}
-
-.table thead{
-    background:var(--primary);
-    color:white;
-}
-</style>
-</head>
-<body>
-
+	<%
+	java.util.List<com.ksa.pfm.model.Category> categories=(java.util.List<com.ksa.pfm.model.Category>) request.getAttribute("categories");
+	java.util.List<com.ksa.pfm.model.Budget> budgets=(java.util.List<com.ksa.pfm.model.Budget>) request.getAttribute("budgets");
+	%>
 
 <div class="form-container">
     <div class="glass-card">
 
         <div class="title">Add Monthly Budget</div>
         <p class="sub">Track and control your spending goals</p>
+        <p style="color: green">${msg}</p>
 
-        <form>
+        <form method="post" action="/budget">
 
             <div class="mb-3">
                 <label class="form-label"><i class="fa-solid fa-calendar-days"></i> Month</label>
-                <select class="form-select" name="month">
-                    <option>Select Month</option>
-                    <option>January</option><option>February</option><option>March</option>
-                    <option>April</option><option>May</option><option>June</option>
-                    <option>July</option><option>August</option><option>September</option>
-                    <option>October</option><option>November</option><option>December</option>
+                <select class="form-select" name="month" required>
+                    <option value="" selected disabled>Select Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
                 </select>
             </div>
 
             <div class="mb-3">
                 <label class="form-label"><i class="fa-solid fa-calendar"></i> Year</label>
-                <input type="number" name="year" class="form-control" placeholder="Enter year" required>
+                 <select class="form-select" name="year" required>
+                    <option value="" selected disabled>Select Year</option>
+                    <%
+                    	for(int year = 2000; year<=2050;year++)
+                    	{
+                    %>
+                   			<option value=<%=year %>><%=year %></option>
+                    <%
+                    	}
+                    %>
+                </select>
             </div>
 
             <div class="mb-3">
                 <label class="form-label"><i class="fa-solid fa-tag"></i> Category</label>
-                <select class="form-select" name="category" required>
-                    <option value="">Select Category</option>
-                    <option>Food</option>
-                    <option>Travel</option>
-                    <option>Shopping</option>
-                    <option>Salary</option>
-                    <option>Other</option>
+                <select class="form-select" name="catName" required>
+                    <option value="" selected disabled>Select Category</option>
+                    <%	
+                    	if(categories!=null && !categories.isEmpty())
+                    	{
+                    	for(com.ksa.pfm.model.Category category : categories){
+                    %>
+                    	 <option value=<%=category.getName() %> ><%=category.getName() %></option>
+                    <%
+                    	}
+                    	}else{
+                    %>
+                   		 <option value="Others">Others</option>
+                   	<%
+                   		 }
+                   	%>
                 </select>
             </div>
 
@@ -166,9 +93,28 @@ body{
         </tr>
         </thead>
         <tbody>
-        <tr><td>January</td><td>2025</td><td>Food</td><td>5000</td></tr>
-        <tr><td>February</td><td>2025</td><td>Travel</td><td>3000</td></tr>
-        <tr><td>March</td><td>2025</td><td>Shopping</td><td>4500</td></tr>
+        <%
+        if(budgets!=null&&!budgets.isEmpty())
+        {
+        	for(com.ksa.pfm.model.Budget budget : budgets)
+        	{
+        %>
+        <tr>
+        	<td><%=budget.getMonth() %></td>
+        	<td><%=budget.getYear() %></td>
+        	<td><%=budget.getCategory().getName() %></td>
+        	<td><%=budget.getAmount() %></td>
+        </tr>
+        <%
+        	}
+        }else{
+        %>
+        	<tr>
+        		<td>Budgets Does Not Exists</td>
+        	</tr>
+        <%
+        }
+        %>
         </tbody>
     </table>
 </div>
