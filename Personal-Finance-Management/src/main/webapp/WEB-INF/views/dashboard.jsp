@@ -96,7 +96,7 @@ body{
             <div class="navbar-nav gap-3">
                 <a class="nav-link" href="transactions">Transactions</a>
                 <a class="nav-link" href="add-transaction">Add Transaction</a>
-                <a class="nav-link" href="budget">Budget</a>
+                <a class="nav-link" href="/budget">Budget</a>
                 <a class="nav-link" href="category">Category</a>
                 <a class="nav-link logout-btn" href="logout">Logout</a>
             </div>
