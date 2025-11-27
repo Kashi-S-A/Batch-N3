@@ -1,7 +1,6 @@
 package com.ksa.pfm.controller;
 
 import java.security.Principal;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ksa.pfm.dto.BudgetDTO;
 import com.ksa.pfm.model.Budget;
 import com.ksa.pfm.model.Category;
+import com.ksa.pfm.model.TransactionType;
 import com.ksa.pfm.model.User;
 import com.ksa.pfm.repo.BudgetRepo;
 import com.ksa.pfm.repo.UserRepo;
@@ -64,6 +64,7 @@ public class BudgetController {
 		} else {
 			Category category = new Category();
 			category.setName(catName);
+			category.setType(TransactionType.EXPENSE);
 			category.setUser(user);
 			Category saveCategory = categoryService.saveCategory(category);
 			budget.setCategory(saveCategory);

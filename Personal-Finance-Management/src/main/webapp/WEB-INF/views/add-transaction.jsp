@@ -99,12 +99,14 @@
   </style>
 </head>
 <body>
-
+<%
+	java.util.List<com.ksa.pfm.model.Category> categories=(java.util.List<com.ksa.pfm.model.Category>) request.getAttribute("categories");
+%>
   <div class="glass-card">
     <div class="brand">Add Transaction</div>
     <div class="lead">Add a new transaction to track your spending</div>
 
-    <form>
+    <form action="/add-transaction" method="post">
       <div class="mb-3">
         <label class="form-label" for="amount">Amount</label>
         <input id="amount" name="amount" type="number" step="0.01" class="form-control" placeholder="Enter amount" required>
@@ -125,8 +127,8 @@
           <label class="form-label" for="type">Type</label>
           <select id="type" name="type" class="form-select" required>
             <option value="">Select type</option>
-            <option value="INCOME">Income</option>
-            <option value="EXPENSE">Expense</option>
+            <option value="INCOME">INCOME</option>
+            <option value="EXPENSE">EXPENSE</option>
           </select>
         </div>
 
@@ -134,11 +136,16 @@
           <label class="form-label" for="category">Category</label>
           <select id="category" name="category" class="form-select" required>
             <option value="">Select category</option>
-            <option value="Food">Food</option>
-            <option value="Salary">Salary</option>
-            <option value="Utilities">Utilities</option>
-            <option value="Shopping">Shopping</option>
-            <option value="Other">Other</option>
+          			<%	
+                    	if(categories!=null && !categories.isEmpty())
+                    	{
+                    	for(com.ksa.pfm.model.Category category : categories){
+                    %>
+                    	 <option value=<%=category.getName() %> ><%=category.getName() %></option>
+                    <%
+                    	}
+                    	}
+                    %>
           </select>
         </div>
       </div>

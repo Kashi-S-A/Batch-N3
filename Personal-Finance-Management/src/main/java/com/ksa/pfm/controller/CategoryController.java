@@ -1,7 +1,6 @@
 package com.ksa.pfm.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,42 +17,37 @@ import com.ksa.pfm.repo.UserRepo;
 import com.ksa.pfm.service.CategoryService;
 
 @Controller
-public class CategoryControlller {
-	
+public class CategoryController {
+
 	@Autowired
 	private UserRepo userRepo;
-	
+
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@GetMapping("/category")
-	public String categorypage(Principal principal, Model model)
-	{
+	public String categorypage(Principal principal, Model model) {
 		User user = userRepo.findByEmail(principal.getName())
 				.orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
-		
+
 		model.addAttribute("categories", categoryService.findByUser(user));
-		
+
 		return "category";
 	}
-	
+
 	@PostMapping("/category")
-	public String postCategory(Principal principal, @RequestParam String catName, @RequestParam TransactionType type, Model model)
-	{
+	public String postCategory(Principal principal, @RequestParam String catName, @RequestParam TransactionType type,
+			Model model) {
 		User user = userRepo.findByEmail(principal.getName())
 				.orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
-		
+
 		Category category = new Category();
 		category.setName(catName);
 		category.setType(type);
-		
+
 		category.setUser(user);
 		categoryService.saveCategory(category);
-						
-		List<Category> savedCategory = categoryService.findByUser(user);
-		
-		model.addAttribute("categories", savedCategory);
-		
-		return "category";
+
+		return "redirect:/category";
 	}
 }
