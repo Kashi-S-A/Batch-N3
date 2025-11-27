@@ -1,3 +1,6 @@
+<%
+	java.util.List<com.ksa.pfm.model.Category> categories=(java.util.List<com.ksa.pfm.model.Category>) request.getAttribute("categories");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,17 +40,17 @@
     <h3 class="fw-bold">Add Category</h3>
 
 
-    <form class="row g-3 mb-4">
+    <form class="row g-3 mb-4" action="/category" method="post">
         <div class="col-md-4">
             <label class="form-label">Category Name:</label>
-            <input type="text" class="form-control" placeholder="Enter category name">
+            <input type="text" name="catName" class="form-control" placeholder="Enter category name" required>
         </div>
 
         <div class="col-md-3">
             <label class="form-label">Type:</label>
-            <select class="form-select">
-                <option>Expense</option>
-                <option>Income</option>
+            <select class="form-select" name="type" required>
+                <option>EXPENSE</option>
+                <option>INCOME</option>
             </select>
         </div>
 
@@ -69,26 +72,28 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Salary</td>
-                    <td>INCOME</td>
-                </tr>
-                <tr>
-                    <td>Shopping</td>
-                    <td>EXPENSE</td>
-                </tr>
-                <tr>
-                    <td>Rent</td>
-                    <td>EXPENSE</td>
-                </tr>
-                <tr>
-                    <td>Petrol</td>
-                    <td>EXPENSE</td>
-                </tr>
-                <tr>
-                    <td>Grocery</td>
-                    <td>EXPENSE</td>
-                </tr>
+				<% 
+				if(categories!=null && !categories.isEmpty())
+				{
+					for(com.ksa.pfm.model.Category category: categories)
+					{
+				%>
+						<tr>
+						    <td> <%=category.getName() %> </td>
+						    <td> <%=category.getType() %> </td>
+					   </tr>	
+				<%			
+					}
+				}
+				else
+				{
+				%>
+					    <tr>
+					        <td>Categories does not exists</td>
+					   </tr>
+				<%
+				}
+				%>
             </tbody>
         </table>
     </div>
