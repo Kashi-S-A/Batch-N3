@@ -92,19 +92,38 @@ public class TransactionController {
 	}
 	
 	
-	@GetMapping("/update-transaction")
-	public String fetcht(@RequestParam("txn") Long txn,Principal principal, Model model) {
-		Transaction txnt = transactionRepo.findById(txn).orElseThrow(()->new UsernameNotFoundException("no transcation oresent"));
-		model.addAttribute("txn", txnt);
-		String email = principal.getName();
-		User user = userRepo.findByEmail(email).orElseThrow(()->new UsernameNotFoundException("User not found"));
-		model.addAttribute("categories",categoryService.findByUser(user));
-		return "update-transaction";
+	// To delete the transaction
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable Long id) {
+	    transactionService.deleteById(id);
+	    return "redirect:/transactions";
 	}
 	
-	@PostMapping("/update-transaction")
-	public String fetcht(Model model) {
-		Transaction transcation = (Transaction) model.getAttribute("txn");
-		return "update-transaction";
+	// to view the add-transaction page to perform update
+	@GetMapping("/edit/{id}")
+	public String showEditForm(@PathVariable Long id, Model model) {
+	    Transaction txn = transactionService.findById(id);
+        
+	    List<Category> categories = categoryService.findAll();
+	    model.addAttribute("transaction",txn);
+	    model.addAttribute("categories", categories);
+	    return "edit-transaction"; 
 	}
+	
+	//to edit the transaction
+	 @PostMapping("/edit/{id}")
+	    public String updateTransaction(@PathVariable Long id, @ModelAttribute TransactionDTO transactionDTO) {
+	        Transaction txn = transactionService.findById(id);
+
+	        txn.setAmount(transactionDTO.getAmount());
+	        txn.setDescription(transactionDTO.getDescription());
+	        txn.setDate(transactionDTO.getDate());
+	        txn.setType(transactionDTO.getType());
+	        txn.setCategory(categoryService.findByName(transactionDTO.getCategory()));
+
+	        transactionService.update(txn);
+
+	        return "redirect:/transactions";
+	
+	 }
 }
