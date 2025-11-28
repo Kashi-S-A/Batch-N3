@@ -14,4 +14,6 @@ public interface CategoryService {
 	public Category findById(Long catId);
 
 	public Category findByName(String catName);
+
+	List<Category> findAll();
 }

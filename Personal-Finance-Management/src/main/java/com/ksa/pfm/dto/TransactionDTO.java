@@ -1,6 +1,6 @@
-package com.pss.pfm.dto;
+package com.ksa.pfm.dto;
 
-import com.pss.pfm.model.TransactionType;
+import com.ksa.pfm.model.TransactionType;
 
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
