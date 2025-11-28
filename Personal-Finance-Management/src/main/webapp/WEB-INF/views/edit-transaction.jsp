@@ -101,8 +101,13 @@
 <body>
 
 <%
+<<<<<<< HEAD
     com.ksa.pfm.model.Transaction txn = (com.ksa.pfm.model.Transaction) request.getAttribute("transaction");
     java.util.List<com.ksa.pfm.model.Category> categories = (java.util.List<com.ksa.pfm.model.Category>) request.getAttribute("categories");
+=======
+    com.pss.pfm.model.Transaction txn = (com.pss.pfm.model.Transaction) request.getAttribute("transaction");
+    java.util.List<com.pss.pfm.model.Category> categories = (java.util.List<com.pss.pfm.model.Category>) request.getAttribute("categories");
+>>>>>>> 6c198e0cd0e5cb92a8ffdcb0b54d459ad2d5afac
 %>
 
 <div class="glass-card">
@@ -143,7 +148,11 @@
                 <select id="category" name="category" class="form-select" required>
                     <option value="">Select category</option>
                     <% if (categories != null) {
+<<<<<<< HEAD
                         for (com.ksa.pfm.model.Category category : categories) { %>
+=======
+                        for (com.pss.pfm.model.Category category : categories) { %>
+>>>>>>> 6c198e0cd0e5cb92a8ffdcb0b54d459ad2d5afac
                             <option value="<%= category.getName() %>" 
                                 <%= category.equals(txn.getCategory()) ? "selected" : "" %>>
                                 <%= category.getName() %>

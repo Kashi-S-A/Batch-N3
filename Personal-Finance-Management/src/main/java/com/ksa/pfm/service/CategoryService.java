@@ -15,5 +15,9 @@ public interface CategoryService {
 
 	public Category findByName(String catName);
 
+<<<<<<< HEAD
 	public List<Category> findAll();
+=======
+	List<Category> findAll();
+>>>>>>> 6c198e0cd0e5cb92a8ffdcb0b54d459ad2d5afac
 }
