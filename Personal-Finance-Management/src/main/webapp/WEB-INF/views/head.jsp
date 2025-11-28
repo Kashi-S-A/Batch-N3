@@ -173,6 +173,148 @@ body{
     background:var(--primary);
     color:white;
 }
+
+/*
+add=trnascatiom
+*/
+.brand {
+      text-align:center;
+      font-weight:700;
+      font-size:20px;
+      color:var(--primary);
+      margin-bottom:6px;
+      letter-spacing:0.6px;
+    }
+    .lead {
+      text-align:center;
+      color:#575b5f;
+      font-size:13px;
+      margin-bottom:20px;
+    }
+	.btn-primary-custom{
+	     width:100%;
+	     background:var(--primary);
+	     color:#fff;
+	     border:none;
+	     padding:12px;
+	     border-radius:12px;
+	     font-weight:700;
+	     font-size:15px;
+	     transition: transform .16s, box-shadow .16s;
+	   }
+	   .btn-primary-custom:hover{
+	     background:var(--primary-light);
+	     transform: translateY(-3px);
+	     box-shadow: 0 10px 26px rgba(10,120,102,0.26);
+	   }
+ /*
+	style for transcartion	   
+ */
+ 
+
+ /* ---- SIDEBAR + TABLE LAYOUT ---- */
+ .layout-container {
+ 	display: flex;
+ 	gap: 25px;
+ 	margin-top: 30px;
+ }
+
+ /* Sidebar Card */
+ .filter-sidebar {
+ 	width: 230px;
+ 	background: rgba(255, 255, 255, 0.75);
+ 	border-radius: 18px;
+ 	padding: 20px;
+ 	box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+ 	backdrop-filter: blur(10px);
+ 	height: fit-content;
+ }
+
+ .filter-sidebar h5 {
+ 	color: var(--primary);
+ 	font-weight: bold;
+ 	text-align: center;
+ 	margin-bottom: 15px;
+ 	font-size: 20px;
+ }
+
+ .filter-sidebar label {
+ 	font-size: 14px;
+ 	font-weight: bold;
+ 	color: var(--primary);
+ 	margin-top: 12px;
+ 	display: block;
+ }
+
+ .filter-sidebar input,
+ .filter-sidebar select {
+ 	border-radius: 10px;
+ 	margin-top: 5px;
+ 	padding: 8px;
+ 	border: 1px solid #cfd9d8;
+ }
+
+ /* Full width button inside sidebar */
+ .filter-sidebar button {
+ 	width: 100%;
+ 	margin-top: 15px;
+ 	border-radius: 10px;
+ }
+
+ /* Main content card beside sidebar */
+ .main-content {
+ 	flex-grow: 1;
+ 	background: rgba(255, 255, 255, 0.75);
+ 	border-radius: 18px;
+ 	padding: 25px;
+ 	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+ 	backdrop-filter: blur(15px);
+ }
+
+ /* Title inside content (same style as your existing title) */
+ .page-title {
+ 	font-size: 26px;
+ 	font-weight: bold;
+ 	color: var(--primary);
+ 	text-align: center;
+ 	margin-bottom: 20px;
+ }
+
+ /* Search Row Style */
+ .search-row {
+ 	display: flex;
+ 	gap: 12px;
+ 	margin-bottom: 15px;
+ }
+ .btn-edit {
+ 	background: #0b6bd6;
+ 	border: none;
+ 	padding: 6px 12px;
+ 	color: white;
+ 	border-radius: 8px;
+ 	font-size: 13px;
+ 	transition: 0.25s;
+ }
+
+ .btn-edit:hover {
+ 	background: #0a56ad;
+ 	transform: scale(1.05);
+ }
+
+ .btn-delete {
+ 	background: #c62828;
+ 	border: none;
+ 	padding: 6px 12px;
+ 	color: white;
+ 	border-radius: 8px;
+ 	font-size: 13px;
+ 	transition: 0.25s;
+ }
+
+ .btn-delete:hover {
+ 	background: #a01e1e;
+ 	transform: scale(1.05);
+ }
 </style>
 </head>
 <body>
