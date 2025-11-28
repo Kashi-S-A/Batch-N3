@@ -3,7 +3,6 @@ package com.ksa.pfm.controller;
 import java.security.Principal;
 import java.util.List;
 
-import org.apache.naming.TransactionRef;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ksa.pfm.dto.FilterTranscationDTO;
 import com.ksa.pfm.dto.TransactionDTO;
@@ -24,123 +22,113 @@ import com.ksa.pfm.model.User;
 import com.ksa.pfm.repo.TransactionRepo;
 import com.ksa.pfm.repo.UserRepo;
 import com.ksa.pfm.service.CategoryService;
-<<<<<<< HEAD
-=======
 import com.ksa.pfm.service.TransactionService;
-
-import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> 6c198e0cd0e5cb92a8ffdcb0b54d459ad2d5afac
-
 
 @Controller
 public class TransactionController {
-	
+
 	@Autowired
 	private UserRepo userRepo;
 
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@Autowired
 	private TransactionRepo transactionRepo;
 
 	@Autowired
 	private TransactionService transactionService;
-	
-	//View Transaction page
+
+	// View Transaction page
 	@GetMapping("/add-transaction")
-	public String getMethodName(Principal principal,Model model) {
+	public String getMethodName(Principal principal, Model model) {
 		model.addAttribute("TransactionDTO", new TransactionDTO());
 		User user = userRepo.findByEmail(principal.getName())
-								.orElseThrow(()-> new UsernameNotFoundException("User Not Found"));
-		model.addAttribute("categories",categoryService.findByUser(user));
-		
+				.orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
+		model.addAttribute("categories", categoryService.findByUser(user));
+
 		return "add-transaction";
 	}
-	
+
 	// To add transaction
 	@PostMapping("/add-transaction")
-	public String postTransaction(Principal principal,TransactionDTO txn) {
-		Transaction transaction=new Transaction();
+	public String postTransaction(Principal principal, TransactionDTO txn) {
+		Transaction transaction = new Transaction();
 		BeanUtils.copyProperties(txn, transaction);
 		User user = userRepo.findByEmail(principal.getName())
-								.orElseThrow(()-> new UsernameNotFoundException("User not found"));
-		
+				.orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
 		transaction.setUser(user);
-		
+
 		Category category = categoryService.findByName(txn.getCategory());
 		transaction.setCategory(category);
 		transactionRepo.save(transaction);
-		
+
 		return "redirect:/add-transaction";
 	}
-	
+
 	// To list the transactions
 	@GetMapping("/transactions")
 	public String fetchAllTransaction(Principal principal, Model model) {
 		String email = principal.getName();
-<<<<<<< HEAD
-		User user = userRepo.findByEmail(email).orElseThrow(()->new UsernameNotFoundException("User not found"));
-		model.addAttribute("categories",categoryService.findByUser(user));
-=======
-		User user = userRepo.findByEmail(email)
-				.orElseThrow(()-> new UsernameNotFoundException("User not found"));
->>>>>>> 6c198e0cd0e5cb92a8ffdcb0b54d459ad2d5afac
+		User user = userRepo.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+		model.addAttribute("categories", categoryService.findByUser(user));
 		List<Transaction> txns = transactionRepo.findByUser(user);
 		model.addAttribute("txns", txns);
-		model.addAttribute("trans",new FilterTranscationDTO());
+		model.addAttribute("trans", new FilterTranscationDTO());
 		return "transactions";
 	}
+
 	@PostMapping("/filter-transactions")
-	public String filterTransaction(Principal principal,FilterTranscationDTO trans,Model model) {
-	
-		User user = userRepo.findByEmail(principal.getName()).orElseThrow(()-> new UsernameNotFoundException("user not found"));
+	public String filterTransaction(Principal principal, FilterTranscationDTO trans, Model model) {
+
+		User user = userRepo.findByEmail(principal.getName())
+				.orElseThrow(() -> new UsernameNotFoundException("user not found"));
 		TransactionType type = trans.getType();
 		Long catId = trans.getCategory();
-	    String from = (trans.getFromDate() == null) ? "" : trans.getFromDate();
-	    String to = (trans.getToDate() == null) ? "" : trans.getToDate();
-		List<Transaction> txns =transactionRepo.filterTrans(user.getId(), type, catId, from, to);
+		String from = (trans.getFromDate() == null) ? "" : trans.getFromDate();
+		String to = (trans.getToDate() == null) ? "" : trans.getToDate();
+		List<Transaction> txns = transactionRepo.filterTrans(user.getId(), type, catId, from, to);
 		model.addAttribute("txns", txns);
-		model.addAttribute("categories",categoryService.findByUser(user));
+		model.addAttribute("categories", categoryService.findByUser(user));
 		return "transactions";
 	}
-	
-<<<<<<< HEAD
-	
-=======
->>>>>>> 6c198e0cd0e5cb92a8ffdcb0b54d459ad2d5afac
+
 	// To delete the transaction
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id) {
-	    transactionService.deleteById(id);
-	    return "redirect:/transactions";
+		transactionService.deleteById(id);
+		return "redirect:/transactions";
 	}
-	
+
 	// to view the add-transaction page to perform update
 	@GetMapping("/edit/{id}")
-	public String showEditForm(@PathVariable Long id, Model model) {
-	    Transaction txn = transactionService.findById(id);
-        
-	    List<Category> categories = categoryService.findAll();
-	    model.addAttribute("transaction",txn);
-	    model.addAttribute("categories", categories);
-	    return "edit-transaction"; 
+	public String showEditForm(Principal principal, @PathVariable Long id, Model model) {
+		User user = userRepo.findByEmail(principal.getName())
+				.orElseThrow(() -> new UsernameNotFoundException("user not found"));
+
+		Transaction txn = transactionService.findById(id);
+
+		List<Category> categories = categoryService.findByUser(user);
+		model.addAttribute("transaction", txn);
+		model.addAttribute("categories", categories);
+		return "edit-transaction";
 	}
-	
-	//to edit the transaction
-	 @PostMapping("/edit/{id}")
-	    public String updateTransaction(@PathVariable Long id, @ModelAttribute TransactionDTO transactionDTO) {
-	        Transaction txn = transactionService.findById(id);
 
-	        txn.setAmount(transactionDTO.getAmount());
-	        txn.setDescription(transactionDTO.getDescription());
-	        txn.setDate(transactionDTO.getDate());
-	        txn.setType(transactionDTO.getType());
-	        txn.setCategory(categoryService.findByName(transactionDTO.getCategory()));
+	// to edit the transaction
+	@PostMapping("/edit/{id}")
+	public String updateTransaction(@PathVariable Long id, @ModelAttribute TransactionDTO transactionDTO) {
+		Transaction txn = transactionService.findById(id);
 
-	        transactionService.update(txn);
+		txn.setAmount(transactionDTO.getAmount());
+		txn.setDescription(transactionDTO.getDescription());
+		txn.setDate(transactionDTO.getDate());
+		txn.setType(transactionDTO.getType());
+		txn.setCategory(categoryService.findByName(transactionDTO.getCategory()));
 
-	        return "redirect:/transactions";
-	
-	 }
+		transactionService.update(txn);
+
+		return "redirect:/transactions";
+
+	}
 }

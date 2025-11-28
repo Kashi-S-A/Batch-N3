@@ -36,10 +36,4 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepo.findByName(catName);
 	}
 
-	@Override
-	public List<Category> findAll() {
-		return categoryRepo.findAll();
-	}
-
-
 }

@@ -1,7 +1,13 @@
 package com.ksa.pfm.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ksa.pfm.model.Transaction;
+import com.ksa.pfm.repo.TransactionRepo;
 import com.ksa.pfm.service.TransactionService;
 
+@Service
 public class TransactionServiceImpl implements TransactionService {
     
 	@Autowired
