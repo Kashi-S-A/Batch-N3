@@ -1,5 +1,6 @@
 package com.ksa.pfm.controller;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -26,8 +27,11 @@ public class AuthController {
 
 	// login page
 	@GetMapping("/login")
-	public String getMethodName(@RequestParam(required = false) String msg, Model model) {
+	public String getMethodName(Principal principal, @RequestParam(required = false) String msg, Model model) {
 		model.addAttribute("msg", msg);
+		if (principal != null) {
+	        return "redirect:/dashboard";
+	    }
 		return "login";
 	}
 

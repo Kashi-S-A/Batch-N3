@@ -323,7 +323,7 @@ add=trnascatiom
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand">Finance Dashboard</a>
+        <a class="navbar-brand" href="/dashboard">Finance Dashboard</a>
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
             <span class="navbar-toggler-icon"></span>
         </button>
