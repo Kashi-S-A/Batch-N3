@@ -19,8 +19,6 @@ import com.ksa.pfm.model.User;
 import com.ksa.pfm.repo.TransactionRepo;
 import com.ksa.pfm.repo.UserRepo;
 
-import jakarta.annotation.security.PermitAll;
-
 
 @Controller
 public class DashboardController {

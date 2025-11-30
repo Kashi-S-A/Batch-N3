@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.ksa.pfm.filter.NoCacheFilter;
 import com.ksa.pfm.model.User;
 import com.ksa.pfm.repo.UserRepo;
 
@@ -64,7 +65,13 @@ public class SecurityConfig {
 			)
 			.logout(logout ->logout
 				 .logoutUrl("/logout")
-			     .logoutSuccessUrl("/login?logout").permitAll());
+			     .logoutSuccessUrl("/login?logout").permitAll()
+			     .invalidateHttpSession(true)
+	                .deleteCookies("JSESSIONID"));
+		 // Add no-cache filter
+	    http.addFilterAfter(new NoCacheFilter(),
+	            org.springframework.security.web.authentication.AnonymousAuthenticationFilter.class);
+
 			
 		return http.build();
 	}

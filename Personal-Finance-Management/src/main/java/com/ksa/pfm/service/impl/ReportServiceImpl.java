@@ -1,13 +1,16 @@
 package com.ksa.pfm.service.impl;
 
-import java.util.List;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.awt.Color; // CRITICAL: Use java.awt.Color for OpenPDF
+import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ksa.pfm.model.Transaction;
+import com.ksa.pfm.model.TransactionType;
+import com.ksa.pfm.repo.ReportRepo;
+import com.ksa.pfm.service.ReportService;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
@@ -19,11 +22,6 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-
-import com.ksa.pfm.model.Transaction;
-import com.ksa.pfm.model.TransactionType;
-import com.ksa.pfm.repo.ReportRepo;
-import com.ksa.pfm.service.ReportService;
 
 @Service
 public class ReportServiceImpl implements ReportService {
