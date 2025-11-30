@@ -5,16 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import com.ksa.pfm.model.Transaction;
-import com.ksa.pfm.model.User; 
+import com.ksa.pfm.model.User;
+import com.ksa.pfm.repo.UserRepo;
 import com.ksa.pfm.service.ReportService;
-import com.ksa.pfm.service.UserService; 
 
 import jakarta.servlet.http.HttpServletResponse; // <-- CRITICAL IMPORT for streaming PDF
 
@@ -23,9 +25,10 @@ public class ReportController {
 
     @Autowired
     private ReportService reportService;
+ 
     
     @Autowired
-    private UserService userService; 
+    private UserRepo userRepo;
 
     // 1. Initial Page Load
     @GetMapping("/report")
@@ -45,7 +48,8 @@ public class ReportController {
     {
         // Safely get the User entity and its ID
         String email = principal.getName();
-        User user = userService.findByEmail(email); 
+    	User user = userRepo.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
         Long userId = user.getId(); 
         
         // Fetch the data
@@ -71,7 +75,8 @@ public class ReportController {
     {
         // 1. Get userId (required to fetch data)
         String email = principal.getName();
-        User user = userService.findByEmail(email); 
+    	User user = userRepo.findByEmail(email)
+				.orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
         Long userId = user.getId(); 
 
         // 2. Fetch the filtered data

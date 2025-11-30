@@ -1,5 +1,6 @@
 package com.ksa.pfm.repo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,6 +24,9 @@ public interface TransactionRepo extends JpaRepository<Transaction, Long> {
     AND (:toDate = '' OR t.date <= :toDate)
     """)
 	public List<Transaction> filterTrans(@Param("userId")Long userId,@Param("type") TransactionType type, @Param("catId") Long catId,  @Param("fromDate") String fromDate,  @Param("toDate") String toDate);
+	
+	List<Transaction> findByUserAndDateBetween(User user,String start,String end);
+	List<Transaction> findByUserAndTypeAndDateBetween(User user,TransactionType type,String start,String end);
 	
 	List<Transaction> findByUser(User user);
 }
