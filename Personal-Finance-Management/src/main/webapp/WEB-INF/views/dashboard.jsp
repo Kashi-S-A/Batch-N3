@@ -110,10 +110,6 @@ fetch("/api/chart/daywise")
     });
     
 
-window.addEventListener("beforeunload", function() {
-    navigator.sendBeacon("/logout", "");
-});
-
 </script>
 
 </body>
