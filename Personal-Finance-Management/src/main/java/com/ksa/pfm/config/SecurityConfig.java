@@ -47,6 +47,10 @@ public class SecurityConfig {
 				req.requestMatchers(
 						"/register",
 						"/login",
+						"/forgotPwd",
+						"/verifyMail",
+						"/verifyOtp",
+						"/updatePassword",
 						"/error",
 						"/static/**")
 				.permitAll()
@@ -64,9 +68,7 @@ public class SecurityConfig {
 			)
 			.logout(logout ->logout
 				 .logoutUrl("/logout")
-			     .logoutSuccessUrl("/login?logout")
-			     .permitAll()
-			     );
+			     .logoutSuccessUrl("/login?logout").permitAll());
 			
 		return http.build();
 	}
