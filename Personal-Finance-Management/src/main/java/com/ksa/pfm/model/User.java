@@ -5,11 +5,13 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -30,6 +32,17 @@ public class User {
 	@CreationTimestamp
 	@Column(updatable = false)
 	private LocalDateTime createdDate;
+	
+	@OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+	private ForgotPassword forgotPassword;
+	
+	public ForgotPassword getForgotPassword() {
+		return forgotPassword;
+	}
+
+	public void setForgotPassword(ForgotPassword forgotPassword) {
+		this.forgotPassword = forgotPassword;
+	}
 
 	public Long getId() {
 		return id;
@@ -81,4 +94,6 @@ public class User {
 
 	@UpdateTimestamp
 	private LocalDateTime updatedDate;
+
+	
 }

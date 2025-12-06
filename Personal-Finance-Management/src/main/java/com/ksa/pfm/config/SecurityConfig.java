@@ -47,6 +47,10 @@ public class SecurityConfig {
 				req.requestMatchers(
 						"/register",
 						"/login",
+						"/forgotPwd",
+						"/verifyMail",
+						"/verifyOtp",
+						"/updatePassword",
 						"/error",
 						"/static/**")
 				.permitAll()
