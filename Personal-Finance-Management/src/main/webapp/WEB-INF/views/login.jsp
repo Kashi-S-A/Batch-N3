@@ -216,7 +216,15 @@
     function validateForm() {
         return validateEmail() && validatePassword();
     }
+    
+ 
+    // Clear dashboardVisited flag on login page load
+    sessionStorage.removeItem('dashboardVisited');
 
+    // Reload page on refresh or forward navigation to prevent caching
+    if (performance.navigation.type === 1 || performance.navigation.type === 2) {
+        window.location.reload();
+    }
 </script>
 
 </body>
