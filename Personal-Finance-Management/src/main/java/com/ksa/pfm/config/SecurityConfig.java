@@ -58,17 +58,23 @@ public class SecurityConfig {
 				.anyRequest().authenticated()
 				)
 			.formLogin(form -> form
-					.loginPage("/login")//GET
-					.loginProcessingUrl("/do-login")//POST
+					.loginPage("/login")
+					.loginProcessingUrl("/do-login")
 					.defaultSuccessUrl("/dashboard",true)
-					.failureHandler((request, response, exception) -> 
-						response.sendRedirect("/login?msg=Invalid credintials"))//GET
+					.failureHandler((request, response, exception) -> {
+					    // Cache prevention headers for Spring MVC
+					    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+					    response.setHeader("Pragma", "no-cache");
+					    response.setDateHeader("Expires", 0);
+					    response.sendRedirect("/login?msg=Invalid credintials");
+					})
 					.permitAll()
-
 			)
-			.logout(logout ->logout
+			.logout(logout -> logout
 				 .logoutUrl("/logout")
-			     .logoutSuccessUrl("/login?logout").permitAll());
+			     .logoutSuccessUrl("/login?logout")
+			     .permitAll()
+			);
 			
 		return http.build();
 	}

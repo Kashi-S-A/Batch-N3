@@ -129,6 +129,36 @@
 		</a>
 
     </div>
+        error.textContent = "";
+        setValid(pass);
+        return true;
+    }
+
+    // ------------ Helpers ------------
+    function setValid(element) {
+        element.classList.remove("invalid-input");
+        element.classList.add("valid-input");
+    }
+
+    function setInvalid(element) {
+        element.classList.remove("valid-input");
+        element.classList.add("invalid-input");
+    }
+
+    // ------------ Submit Validation ------------
+    function validateForm() {
+        return validateEmail() && validatePassword();
+    }
+    
+ 
+    // Clear dashboardVisited flag on login page load
+    sessionStorage.removeItem('dashboardVisited');
+
+    // Reload page on refresh or forward navigation to prevent caching
+    if (performance.navigation.type === 1 || performance.navigation.type === 2) {
+        window.location.reload();
+    }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
